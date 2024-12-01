@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./task.css" rel="stylesheet"/>
+    <title>Currency Converter</title>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1 class="heading">Currency Converter</h1>
+            <div class="current-amount">
+                <label for="amount">Enter Amount</label>
+                <input 
+                    type="text"
+                    placeholder="100"
+                    class="amount-input"
+                    id="amount"
+                />
+            </div>
+            <div class="dropdown-container">
+                <select>
+                    <option>Select Value</option>
+                </select>
+                <p>TO</p>
+                <select>
+                    <option>Select Value</option>
+                </select>
+            </div>
+            <button class="convert-button">
+                Convert
+            </button>
+            <p class="result">100USD = 8350.24 INR</p>
+        </div>
+    </div>
+    <script src="./task.js"></script>
+</body>
+</html>
