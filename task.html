@@ -13,29 +13,27 @@
             <div class="current-amount">
                 <label for="amount" class="amount-head">Enter Amount</label>
                 <input 
-                    type="text"
+                    type="number"
                     placeholder="100"
                     class="amount-input"
                     id="amount"
+                    required
                 />
             </div>
             <div class="dropdown-container">
                 <select class="dropdown" id="list1">
-                    <option value="" disabled selected>Select Country</option>
                 </select>
                 <p>TO</p>
                 <select class="dropdown" id="list2">
-                    <option>Select Country</option>
                 </select>
             </div>
             <div class="btn-convert">
-
+                <button id="convert-button">
+                    Convert
+                </button>
             </div>
-            <button class="convert-button">
-                Convert
-            </button>
-            <p id="result">100USD = 8350.24 INR</p>
-            <p id="error"></p>
+            <div id="result">100USD = 8350.24 INR</div>
+            <div id="error"></div>
         </div>
     </div>
     <script src="./task.js"></script>
