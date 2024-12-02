@@ -10,12 +10,17 @@ interface ValidationResult{
     result: 'success' | 'failed'
 }
 
+interface API_Response{
+    result: string,
+    conversion_rates: Record<string, number>
+}
+
 //Content Loading
-document.addEventListener('DOMContentLoaded', (): void =>{
+document.addEventListener('DOMContentLoaded', (): void=>{
 
     fetch('https://v6.exchangerate-api.com/v6/831beec2d712d23703f68041/latest/USD')
     .then((res)=>res.json())
-    .then((data: any)=>{
+    .then((data: API_Response)=>{
 
         if(data.result === "success"){
             countryData = data.conversion_rates
@@ -41,39 +46,44 @@ document.addEventListener('DOMContentLoaded', (): void =>{
 })
 
 //Convert functionality
-document.getElementById('convert-button').addEventListener('click', ()=>{
+document.getElementById('convert-button').addEventListener('click', (): void=>{
+    try{
+        const countryName : string = list1.value
+        const convertTo : string = list2.value
+        const amount : number = parseFloat((document.getElementById('amount') as HTMLInputElement).value)
 
-    const countryName = list1.value
-    const convertTo = list2.value
-    const amount : number = parseFloat((document.getElementById('amount') as HTMLInputElement).value)
+        //Validation
+        const validationResult : ValidationResult = Validation(amount, countryName, convertTo)
+        if(validationResult.result === 'failed'){
+            errorTag.style.display = 'block'
+            errorTag.innerText = validationResult.message
+            errorTag.style.color = "red"
+            errorTag.style.width = "100%"
+            return
+        }  
 
-    //Validation
-    const validationResult : ValidationResult = Validation(amount, countryName, convertTo)
-    if(validationResult.result === 'failed'){
-        errorTag.style.display = 'block'
-        errorTag.innerText = validationResult.message
-        errorTag.style.color = "red"
-        errorTag.style.width = "100%"
-        return
-    }  
+        if(countryData[countryName] && countryData[convertTo]){
+            const changeRate : number = countryData[countryName]
+            const convertRate : number = countryData[convertTo]
 
-    if(countryData[countryName] && countryData[convertTo]){
-        const changeRate = countryData[countryName]
-        const convertRate = countryData[convertTo]
+            const conversionRate = convertRate / changeRate;
 
-        const conversionRate = convertRate / changeRate;
+            const convertedAmount = amount * conversionRate;
+            
+            result.innerText = `${amount} ${countryName} = ${convertedAmount.toFixed(2)} ${convertTo}`
 
-        const convertedAmount = amount * conversionRate;
-        
-        result.innerText = `${amount} ${countryName} = ${convertedAmount.toFixed(2)} ${convertTo}`
+            errorTag.style.display = "none"
 
-        errorTag.style.display = "none"
-
-        alert(`${countryName} to ${convertTo} conversion successfull`)
-        
-    }else{
-        alert('No data found')
+            alert(`${countryName} to ${convertTo} conversion successfull`)
+            
+        }else{
+            alert('No data found')
+        }
+    }catch(error: any){
+        alert(error.message)
     }
+
+    
 })
 
 //Validation Check
