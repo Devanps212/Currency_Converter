@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
+}
+
+body{
+    font-family: 'Lato', sans-serif;
 }
 
 .container{
@@ -22,37 +28,7 @@
     border-radius:3px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.326);
     padding: 3px;
-}
-
-.amount-input:active{
-    border-color: #555;
-    outline: none;
-}
-*{
-    margin: 0;
-    padding: 0;
-}
-
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.content{
-    padding: 6rem;
-    border: 1px solid #555;
-    background-color: #F8D800;
-    border-radius: 12px;
-    box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.326);
-}
-
-.amount-input{
-    border-radius:3px;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.326);
-    padding: 3px;
-    width: 96%;
+    width: 95%;
 }
 
 .amount-input:active{
@@ -64,27 +40,53 @@
     width: 100%;
     background-color: #007bff;
     color: white;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.326);
-    padding: 5px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.247);
+    padding: 6px;
     border-radius: 5px;
+    outline: none;
+}
+
+.btn-convert{
+    padding-block: 10px;
+}
+
+.amount-head{
+    margin-bottom: 15px;
 }
 
 .dropdown-container{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-block: 10px;
+}
+
+.dropdown{
+    border-radius:3px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.326);
+    padding: 3px;
 }
 
 .current-amount{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-block: 15px;
+    margin-top: 15px;
 }
 
 .heading{
     text-align: center;
+    filter: drop-shadow(1px 2px 4px rgba(128, 128, 128, 0.484));
 }
 
-.result{
+#result{
     text-align: center;
+    padding-block: 10px;
+}
+
+#error{
+    text-align: center;
+    padding-block: 10px;
+    display: none;
 }
