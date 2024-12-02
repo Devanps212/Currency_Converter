@@ -10,12 +10,17 @@ interface ValidationResult{
     result: 'success' | 'failed'
 }
 
+interface API_Response{
+    result: string,
+    conversion_rates: Record<string, number>
+}
+
 //Content Loading
-document.addEventListener('DOMContentLoaded', (): void =>{
+document.addEventListener('DOMContentLoaded', (): void=>{
 
     fetch('https://v6.exchangerate-api.com/v6/831beec2d712d23703f68041/latest/USD')
     .then((res)=>res.json())
-    .then((data: any)=>{
+    .then((data: API_Response)=>{
 
         if(data.result === "success"){
             countryData = data.conversion_rates
@@ -41,10 +46,10 @@ document.addEventListener('DOMContentLoaded', (): void =>{
 })
 
 //Convert functionality
-document.getElementById('convert-button').addEventListener('click', ()=>{
+document.getElementById('convert-button').addEventListener('click', (): void=>{
 
-    const countryName = list1.value
-    const convertTo = list2.value
+    const countryName : string = list1.value
+    const convertTo : string = list2.value
     const amount : number = parseFloat((document.getElementById('amount') as HTMLInputElement).value)
 
     //Validation
@@ -58,8 +63,8 @@ document.getElementById('convert-button').addEventListener('click', ()=>{
     }  
 
     if(countryData[countryName] && countryData[convertTo]){
-        const changeRate = countryData[countryName]
-        const convertRate = countryData[convertTo]
+        const changeRate : number = countryData[countryName]
+        const convertRate : number = countryData[convertTo]
 
         const conversionRate = convertRate / changeRate;
 
