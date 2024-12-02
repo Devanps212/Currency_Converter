@@ -11,7 +11,7 @@
         <div class="content">
             <h1 class="heading">Currency Converter</h1>
             <div class="current-amount">
-                <label for="amount">Enter Amount</label>
+                <label for="amount" class="amount-head">Enter Amount</label>
                 <input 
                     type="text"
                     placeholder="100"
@@ -20,18 +20,22 @@
                 />
             </div>
             <div class="dropdown-container">
-                <select>
-                    <option value="" disabled selected>Select Value</option>
+                <select class="dropdown">
+                    <option value="" disabled selected>Select Country</option>
                 </select>
                 <p>TO</p>
-                <select>
-                    <option>Select Value</option>
+                <select class="dropdown">
+                    <option>Select Country</option>
                 </select>
+            </div>
+            <div class="btn-convert">
+
             </div>
             <button class="convert-button">
                 Convert
             </button>
-            <p class="result">100USD = 8350.24 INR</p>
+            <p id="result">100USD = 8350.24 INR</p>
+            <p id="error"></p>
         </div>
     </div>
     <script src="./task.js"></script>
